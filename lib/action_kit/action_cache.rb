@@ -1,5 +1,3 @@
-require 'lib/cache'
-
 module ActionKit
   # Public: Basic interactor caching.
   module ActionCache
