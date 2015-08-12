@@ -6,6 +6,10 @@ require 'active_support/core_ext/module'
 require 'active_support/core_ext/class'
 
 module ActionKit
+  # Public: Caching strategy for ActionCache
+  mattr_accessor :logger
+  self.logger = Logger.new('/dev/null')
+
   autoload :Action, 'action_kit/action'
   autoload :ActionCache, 'action_kit/action_cache'
 

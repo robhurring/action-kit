@@ -4,10 +4,6 @@ module ActionKit
     extend ActiveSupport::Concern
 
     # Public: Caching strategy for ActionCache
-    mattr_accessor :logger
-    self.logger = Logger.new($stdout)
-
-    # Public: Caching strategy for ActionCache
     mattr_accessor :cache
     self.cache = ActionKit::Cache::Worthless
 
@@ -97,7 +93,7 @@ module ActionKit
 
       result = ActionCache.cache.fetch(cache_key, cache_options) do
         interactor.call
-        ActionCache.logger.debug "[cache.set] #{cache_key} -> #{cache_options}"
+        ActionKit.logger.debug "[cache.set] #{cache_key} -> #{cache_options}"
         ActionCache.serializer.dump(context)
       end
 
