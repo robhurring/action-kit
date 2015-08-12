@@ -20,7 +20,6 @@ module ActionKit
     # Public: Context merging strategy.
     mattr_accessor :context_merge_strategy
     self.context_merge_strategy = ActionKit::MergeStrategy::RestoredWins
-    end
 
     # Public: Globally enable/disable the action caching
     mattr_accessor :enabled
