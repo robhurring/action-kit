@@ -57,6 +57,8 @@ end
 
 *NOTE:* This only caches successful calls. If `context.failure?` is true then no caching will take place.
 
+**WARNING:** Merging `OpenStruct` contexts is tricky and not one-size-fits-all (at least not yet). Have a look at the [context merging strategies](lib/action_kit/merge_strategy) to see what can work. The default is [paranoid](lib/action_kit/merge_strategy/paranoid.rb) and only sets *new* keys on the context instead of overwriting anything.
+
 ```ruby
 # config/initializers/action_kit
 ActionKit::ActionCache.cache = Rails.cache
@@ -96,7 +98,6 @@ class GetUser
   end
 end
 ```
-
 
 ## Development
 

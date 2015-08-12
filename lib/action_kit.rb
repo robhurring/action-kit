@@ -22,7 +22,7 @@ module ActionKit
   end
 
   module MergeStrategy
-    autoload :RestoredWins, 'action_kit/merge_strategy/restored_wins'
-    autoload :OnlyNew, 'action_kit/merge_strategy/only_new'
+    autoload :Clobber, 'action_kit/merge_strategy/clobber'
+    autoload :Paranoid, 'action_kit/merge_strategy/paranoid'
   end
 end
