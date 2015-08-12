@@ -23,5 +23,6 @@ module ActionKit
 
   module MergeStrategy
     autoload :RestoredWins, 'action_kit/merge_strategy/restored_wins'
+    autoload :OnlyNew, 'action_kit/merge_strategy/only_new'
   end
 end
