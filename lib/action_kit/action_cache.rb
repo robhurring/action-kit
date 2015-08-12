@@ -15,7 +15,7 @@ module ActionKit
 
     # Public: Serializer to use for caching
     mattr_accessor :serializer
-    self.serializer = ActionKit::Serializers::Marshal
+    self.serializer = ActionKit::Serializer::Marshal
 
     # Public: Globally enable/disable the action caching
     mattr_accessor :enabled
