@@ -89,7 +89,7 @@ class GetUser
 
   private
 
-  delegate :username, :password, to: :context
+  delegate :username, to: :context
 
   def api
     Company::API::Users
