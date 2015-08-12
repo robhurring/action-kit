@@ -8,5 +8,12 @@ require 'active_support/core_ext/class'
 module ActionKit
   autoload :Action, 'action_kit/action'
   autoload :ActionCache, 'action_kit/action_cache'
-  autoload :NullCache, 'action_kit/null_cache'
+
+  module Cache
+    autoload :Worthless, 'action_kit/cache/worthless'
+  end
+
+  module Serializer
+    autoload :Marshal, 'action_kit/serializer/marshal'
+  end
 end

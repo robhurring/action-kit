@@ -11,11 +11,11 @@ module ActionKit
 
     # Public: Caching strategy for ActionCache
     mattr_accessor :cache
-    self.cache = ActionKit::NullCache
+    self.cache = ActionKit::Cache::Worthless
 
     # Public: Serializer to use for caching
     mattr_accessor :serializer
-    self.serializer = ::Marshal
+    self.serializer = ActionKit::Serializers::Marshal
 
     # Public: Globally enable/disable the action caching
     mattr_accessor :enabled
