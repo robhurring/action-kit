@@ -30,7 +30,7 @@ module ActionKit
       # Private: A proc that is given the `context` and used to generate a cache key.
       class_attribute :_cache_key_generator
 
-      # Private: Options for `Rails.cache`.
+      # Private: Options for our `cache`.
       class_attribute :_cache_options
       self._cache_options = {}
 
@@ -54,7 +54,7 @@ module ActionKit
         self._cache_key_generator = block
       end
 
-      # Public: Cache options for `Rails.cache`.
+      # Public: Cache options for our cache.
       #
       # time  - The expiration time for caching.
       #
@@ -65,6 +65,19 @@ module ActionKit
       # Returns nothing.
       def expires_in(time)
         _cache_options[:expires_in] = time
+      end
+
+      # Public: Cache options for our caching strategy.
+      #
+      # options  - A list of options for our cache
+      #
+      # Examples
+      #
+      #   cache_options expires_in: 1.day
+      #
+      # Returns nothing.
+      def cache_options(options = {})
+        _cache_options = options
       end
     end
 
@@ -82,7 +95,7 @@ module ActionKit
 
       result = ActionCache.cache.fetch(cache_key, cache_options) do
         interactor.call
-        ActionCache.logger.info "[cache.set] #{cache_key} -> #{cache_options}"
+        ActionCache.logger.debug "[cache.set] #{cache_key} -> #{cache_options}"
         ActionCache.serializer.dump(context)
       end
 
