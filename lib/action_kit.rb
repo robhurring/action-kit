@@ -16,4 +16,8 @@ module ActionKit
   module Serializer
     autoload :Marshal, 'action_kit/serializer/marshal'
   end
+
+  module MergeStrategy
+    autoload :RestoredWins, 'action_kit/merge_strategy/restored_wins'
+  end
 end

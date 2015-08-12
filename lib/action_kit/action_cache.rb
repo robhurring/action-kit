@@ -17,6 +17,11 @@ module ActionKit
     mattr_accessor :serializer
     self.serializer = ActionKit::Serializer::Marshal
 
+    # Public: Context merging strategy.
+    mattr_accessor :context_merge_strategy
+    self.context_merge_strategy = ActionKit::MergeStrategy::RestoredWins
+    end
+
     # Public: Globally enable/disable the action caching
     mattr_accessor :enabled
     self.enabled = true
@@ -99,7 +104,13 @@ module ActionKit
         ActionCache.serializer.dump(context)
       end
 
-      @context = ActionCache.serializer.load(result)
+      restored_context = ActionCache.serializer.load(result)
+      merged_context = ActionCache.context_merge_strategy.merge(
+        context,
+        restored_context
+      )
+
+      @context = merged_context
     end
 
     # Private: Wrap around the `interactor.call` and marshal the result into Rails.cache.
